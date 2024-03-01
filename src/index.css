@@ -133,7 +133,7 @@ progress {
 }
 
 .btn-option:not([disabled]):hover {
-  transform: translateX(1.2rem);
+  transform: translateX(8rem);
 }
 
 .btn[disabled]:hover {
@@ -168,7 +168,7 @@ progress {
 }
 
 .answer {
-  transform: translateX(2rem);
+  transform: translateX(8rem);
 }
 
 .result {
