@@ -12,9 +12,12 @@ const initialState = {
   status: "loading",
   index: 0,
   answer: null,
+  points: 0,
 }
 
 function reducer(state, action) {
+  let question
+
   switch (action.type) {
     case "dataRecieved":
       return {
@@ -33,9 +36,15 @@ function reducer(state, action) {
         status: "active",
       }
     case "newAnswer":
+      question = state.questions[state.index]
+
       return {
         ...state,
         answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points,
       }
     default:
       throw new Error("action is unkown")
