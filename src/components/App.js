@@ -4,13 +4,13 @@ import Header from "./Header"
 import Loader from "./Loader"
 import Main from "./Main"
 import NextButton from "./NextButton"
+import Progress from "./Progress"
 import Question from "./Question"
 import Start from "./Start"
 
 const initialState = {
   questions: [],
-  // loading, error, ready, active, finished
-  status: "loading",
+  status: "loading", // loading, error, ready, active, finished
   index: 0,
   answer: null,
   points: 0,
@@ -61,8 +61,12 @@ function reducer(state, action) {
 // App component
 function App() {
   const [data, dispatch] = useReducer(reducer, initialState)
-  const { questions, status, index, answer } = data
+  const { questions, status, index, answer, points } = data
   const numQuestions = questions.length
+  const totalPoints = questions.reduce(
+    (acc, curValue) => acc + curValue.points,
+    0,
+  )
 
   useEffect(() => {
     fetch("http://localhost:8000/questions")
@@ -84,6 +88,13 @@ function App() {
         )}
         {status === "active" && (
           <>
+            <Progress
+              index={index}
+              numQuestion={numQuestions}
+              points={points}
+              totalPoints={totalPoints}
+              answer={answer}
+            />
             <Question
               question={questions[index]}
               dispatch={dispatch}
