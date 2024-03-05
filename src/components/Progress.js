@@ -1,8 +1,6 @@
-import React from "react"
-
 const Progress = ({
   index,
-  numQuestion,
+  numQuestions,
   points,
   totalPoints,
   answer,
@@ -10,11 +8,11 @@ const Progress = ({
   return (
     <header className="progress">
       <progress
-        max={numQuestion}
+        max={numQuestions}
         value={index + Number(answer !== null)}
       ></progress>
       <p>
-        Question <strong>{index + 1}</strong>/{numQuestion - 1}
+        Question <strong>{index + 1}</strong>/{numQuestions}
       </p>
       <p>
         Points <strong>{points}</strong>/{totalPoints}
